@@ -65,8 +65,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-card-border)] bg-[var(--color-dashboard-bg)]/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-6xl px-4 py-4">
+    <header className="relative z-50 border-b border-[var(--color-card-border)] bg-[var(--color-dashboard-bg)]/80 backdrop-blur-xl md:sticky md:top-0">
+      <div className="mx-auto max-w-6xl px-4 py-3 md:py-4">
         {/* Top row */}
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           {/* Name & Title */}
