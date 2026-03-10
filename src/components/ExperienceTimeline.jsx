@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, MapPin, ChevronRight, Clock } from "lucide-react";
+import { Briefcase, MapPin, ChevronRight, Clock, ChevronDown } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -22,6 +22,7 @@ export default function ExperienceTimeline() {
   const { locale } = useLanguage();
   const d = cvData[locale];
   const [filter, setFilter] = useState("all");
+  const [sectionExpanded, setSectionExpanded] = useState(true);
 
   const domains = ["all", ...new Set(d.experience.map((e) => e.domain))];
   const filtered = filter === "all" ? d.experience : d.experience.filter((e) => e.domain === filter);
@@ -29,13 +30,31 @@ export default function ExperienceTimeline() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-4 pt-8">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <div className="mb-4 flex items-center gap-2">
-          <Clock size={18} className="text-[var(--color-accent)]" />
-          <h2 className="text-lg font-semibold text-[var(--color-accent)]">
-            {locale === "en" ? "Professional Experience" : "Kinh nghiệm Làm việc"}
-          </h2>
-        </div>
+        <button
+          onClick={() => setSectionExpanded((v) => !v)}
+          className="mb-4 flex w-full items-center justify-between text-left"
+        >
+          <div className="flex items-center gap-2">
+            <Clock size={18} className="text-[var(--color-accent)]" />
+            <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+              {locale === "en" ? "Professional Experience" : "Kinh nghiệm Làm việc"}
+            </h2>
+          </div>
+          <motion.div animate={{ rotate: sectionExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+            <ChevronDown size={20} className="text-[var(--color-accent)]" />
+          </motion.div>
+        </button>
 
+        <AnimatePresence initial={false}>
+          {sectionExpanded && (
+            <motion.div
+              key="experience-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
         {/* Domain filter */}
         <div className="mb-5 flex flex-wrap gap-1.5">
           {domains.map((dom) => (
@@ -163,6 +182,9 @@ export default function ExperienceTimeline() {
             </motion.div>
           </AnimatePresence>
         </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </section>
   );

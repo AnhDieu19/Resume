@@ -132,7 +132,7 @@ const cvData = {
         type: "Full-time",
         domain: "retail",
         bullets: [
-          "Led end-to-end CRM rollout for Marketing, Sales & Operations teams",
+          "Joined end-to-end CRM rollout for Marketing, Sales & Operations teams",
           "Integrated 3CX, MISA AMIS, SMS gateway, Zalo ZNS via REST APIs",
           "Mentored team of 4 BA interns on requirements gathering & testing",
           "Developed Power BI dashboards for revenue, pipeline & transaction metrics",
@@ -344,7 +344,7 @@ const cvData = {
         type: "Toàn thời gian",
         domain: "retail",
         bullets: [
-          "Chủ trì triển khai CRM cho Marketing, Sales & Operations",
+          "Tham gia triển khai CRM cho Marketing, Sales & Operations",
           "Tích hợp 3CX, MISA AMIS, SMS, Zalo ZNS qua REST APIs",
           "Hướng dẫn 4 thực tập sinh BA về thu thập yêu cầu & kiểm thử",
           "Xây dựng dashboard Power BI cho doanh thu, pipeline & giao dịch",

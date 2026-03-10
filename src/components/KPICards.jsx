@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { Calendar, Layers, Database, Plug } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Calendar, Layers, Database, Plug, ChevronDown } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -39,9 +39,32 @@ function AnimatedValue({ value, delay = 0 }) {
 export default function KPICards() {
   const { locale } = useLanguage();
   const d = cvData[locale];
+  const [expanded, setExpanded] = useState(true);
 
   return (
     <section id="summary" className="mx-auto max-w-6xl px-4 pt-8">
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="mb-3 flex w-full items-center justify-between text-left"
+      >
+        <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+          {locale === "en" ? "Summary & KPIs" : "Tổng quan & KPI"}
+        </h2>
+        <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+          <ChevronDown size={20} className="text-[var(--color-accent)]" />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            key="kpi-content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
       {/* KPI Grid */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {d.kpis.map((kpi, i) => {
@@ -91,6 +114,9 @@ export default function KPICards() {
           {d.summary}
         </p>
       </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -30,6 +30,7 @@ export default function ProjectsShowcase() {
   const { locale } = useLanguage();
   const d = cvData[locale];
   const [expanded, setExpanded] = useState(null);
+  const [sectionExpanded, setSectionExpanded] = useState(true);
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-4 pt-8">
@@ -38,13 +39,31 @@ export default function ProjectsShowcase() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <div className="mb-4 flex items-center gap-2">
-          <BarChart3 size={18} className="text-[var(--color-accent)]" />
-          <h2 className="text-lg font-semibold text-[var(--color-accent)]">
-            {locale === "en" ? "Selected Projects" : "Dự án Tiêu biểu"}
-          </h2>
-        </div>
+        <button
+          onClick={() => setSectionExpanded((v) => !v)}
+          className="mb-4 flex w-full items-center justify-between text-left"
+        >
+          <div className="flex items-center gap-2">
+            <BarChart3 size={18} className="text-[var(--color-accent)]" />
+            <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+              {locale === "en" ? "Selected Projects" : "Dự án Tiêu biểu"}
+            </h2>
+          </div>
+          <motion.div animate={{ rotate: sectionExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+            <ChevronDown size={20} className="text-[var(--color-accent)]" />
+          </motion.div>
+        </button>
 
+        <AnimatePresence initial={false}>
+          {sectionExpanded && (
+            <motion.div
+              key="projects-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
         <div className="grid gap-4 md:grid-cols-2">
           {d.projects.map((project, i) => (
             <motion.div
@@ -150,6 +169,9 @@ export default function ProjectsShowcase() {
             </motion.div>
           ))}
         </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </section>
   );

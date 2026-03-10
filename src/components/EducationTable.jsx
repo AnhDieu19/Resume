@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Award, Globe } from "lucide-react";
+import { GraduationCap, Award, Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -19,17 +19,36 @@ export default function EducationTable() {
   const { locale } = useLanguage();
   const d = cvData[locale];
   const [tab, setTab] = useState("education");
+  const [sectionExpanded, setSectionExpanded] = useState(true);
 
   return (
     <section id="education" className="mx-auto max-w-6xl px-4 pt-8">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <div className="mb-4 flex items-center gap-2">
-          <GraduationCap size={18} className="text-[var(--color-accent)]" />
-          <h2 className="text-lg font-semibold text-[var(--color-accent)]">
-            {locale === "en" ? "Education & Certifications" : "Học vấn & Chứng chỉ"}
-          </h2>
-        </div>
+        <button
+          onClick={() => setSectionExpanded((v) => !v)}
+          className="mb-4 flex w-full items-center justify-between text-left"
+        >
+          <div className="flex items-center gap-2">
+            <GraduationCap size={18} className="text-[var(--color-accent)]" />
+            <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+              {locale === "en" ? "Education & Certifications" : "Học vấn & Chứng chỉ"}
+            </h2>
+          </div>
+          <motion.div animate={{ rotate: sectionExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+            <ChevronDown size={20} className="text-[var(--color-accent)]" />
+          </motion.div>
+        </button>
 
+        <AnimatePresence initial={false}>
+          {sectionExpanded && (
+            <motion.div
+              key="education-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
         {/* Tabs */}
         <div className="mb-5 flex gap-1 rounded-lg bg-[var(--color-card-bg)] p-1 w-fit border border-[var(--color-card-border)]">
           {TABS.map(({ key, icon: Icon }) => (
@@ -158,6 +177,9 @@ export default function EducationTable() {
                   </div>
                 </motion.div>
               ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
             </motion.div>
           )}
         </AnimatePresence>
