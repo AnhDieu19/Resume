@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -13,6 +14,7 @@ export default function SkillsChart() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [tooltip, setTooltip] = useState(null);
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [expanded, setExpanded] = useState(true);
 
   useEffect(() => {
     if (!svgRef.current || !isInView) return;
@@ -217,10 +219,28 @@ export default function SkillsChart() {
         transition={{ duration: 0.6 }}
         className="rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-5"
       >
-        <h2 className="mb-4 text-lg font-semibold text-[var(--color-accent)]">
-          {locale === "en" ? "Core Skills Distribution" : "Phân bố Kỹ năng Chính"}
-        </h2>
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          className="mb-2 flex w-full items-center justify-between text-left"
+        >
+          <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+            {locale === "en" ? "Core Skills Distribution" : "Phân bố Kỹ năng Chính"}
+          </h2>
+          <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+            <ChevronDown size={20} className="text-[var(--color-accent)]" />
+          </motion.div>
+        </button>
 
+        <AnimatePresence initial={false}>
+          {expanded && (
+            <motion.div
+              key="skills-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
         <div className="flex flex-col items-center gap-6 lg:flex-row">
           {/* Radar Chart */}
           <div ref={containerRef} className="relative w-full max-w-[400px]">
@@ -302,6 +322,9 @@ export default function SkillsChart() {
             </motion.div>
           ))}
         </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </section>
   );
