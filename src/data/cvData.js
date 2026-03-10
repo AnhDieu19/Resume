@@ -37,24 +37,11 @@ const cvData = {
     ],
 
     projects: [
-      {
-        title: "CRM Implementation & Customer 360",
-        company: "Linh Anh Clinic Chain",
-        scope: "10 branches",
-        role: "Senior Business Analyst",
-        challenge: "Disparate spreadsheets and standalone tools creating duplicate customer records and inconsistent sales/marketing processes.",
-        actions: [
-          "Conducted discovery workshops, authored SRS & BPMN diagrams, managed backlog via user stories",
-          "Integrated external systems (3CX, MISA AMIS, SMS, Zalo ZNS) via REST APIs",
-          "Normalized data schema and migrated 7 years of historical records using SQL ETL",
-          "Built interactive Power BI dashboards for sales pipeline, revenue & conversion tracking",
-        ],
-        impact: "Centralized CRM across all branches, unified customer profiles, enabling faster campaign execution.",
-        metrics: ["7yr data migrated", "10 branches unified", "REST API integrations"],
-      },
+      // --- Tech / Data Projects ---
       {
         title: "Marketing/Sales Data Integration & Reporting",
         company: "Siam Thailand Hospital",
+        category: "tech",
         role: "Technical BA (Data/Integration)",
         challenge: "Fragmented data across CRM, HIS, EMR, call center, and ad platforms delaying decisions.",
         actions: [
@@ -69,6 +56,7 @@ const cvData = {
       {
         title: "EMR & E-Signature Implementation",
         company: "Siam Thailand Hospital",
+        category: "tech",
         role: "Technical BA / Project Coordinator",
         challenge: "Paper-based forms and wet signatures causing inefficiencies and compliance risks.",
         actions: [
@@ -81,17 +69,50 @@ const cvData = {
         metrics: ["First EMR system", "Paper-free workflows", "High adoption rate"],
       },
       {
-        title: "Category Performance Optimization",
-        company: "AEON Mall Canary",
-        role: "Department Leader (Data-Driven Ops)",
-        challenge: "3,000+ SKU portfolio with shrinkage risks and complex supply chain planning.",
+        title: "Customer Experience Platform & CDP",
+        company: "FPT Center of Applied Data Science (CADS DC5)",
+        category: "tech",
+        role: "Business Analyst",
+        challenge: "Fragmented customer data across retail & healthcare verticals lacking unified analytics.",
         actions: [
-          "Analyzed ERP data using Power Query/Pivot and Excel Solver",
-          "Implemented improved stock control and loss prevention measures",
-          "Coordinated with DC and 100+ suppliers on lead times and fill rates",
+          "Developed CX Platform features and analytics modules",
+          "Built Retail Analysis use cases for Long Chau / FShop",
+          "Contributed to Customer Data Platform (CDP) for Retail and Healthcare domains",
         ],
-        impact: "Maintained shrinkage at ≤ 0.55% of sales, improved on-shelf availability.",
-        metrics: ["≤ 0.55% shrinkage", "3,000+ SKUs", "100+ suppliers"],
+        impact: "Enabled data-driven customer insights across multiple business verticals.",
+        metrics: ["CX Platform", "CDP", "Multi-vertical analytics"],
+      },
+      {
+        title: "CRM Implementation & Customer 360",
+        company: "Linh Anh Clinic Chain",
+        scope: "10 branches",
+        category: "tech",
+        role: "Senior Business Analyst",
+        challenge: "Disparate spreadsheets and standalone tools creating duplicate customer records and inconsistent sales/marketing processes.",
+        actions: [
+          "Conducted discovery workshops, authored SRS & BPMN diagrams, managed backlog via user stories",
+          "Integrated external systems (3CX, MISA AMIS, SMS, Zalo ZNS) via REST APIs",
+          "Normalized data schema and migrated 7 years of historical records using SQL ETL",
+          "Built interactive Power BI dashboards for sales pipeline, revenue & conversion tracking",
+        ],
+        impact: "Centralized CRM across all branches, unified customer profiles, enabling faster campaign execution.",
+        metrics: ["7yr data migrated", "10 branches unified", "REST API integrations"],
+      },
+      // --- Retail Projects ---
+      {
+        title: "Innovation Bakery Department",
+        company: "Central Retail (Big C Dong Nai)",
+        category: "retail",
+        role: "Bakery Department Manager",
+        challenge: "Stagnant bakery category with limited product innovation and no structured NPD process.",
+        actions: [
+          "Led 'Innovation Bakery' project: customer research, competitor analysis, new product development",
+          "Authored CAPEX proposals for equipment upgrades and production line optimization",
+          "Applied PDCA cycles to continuously improve production quality and efficiency",
+          "Managed cross-functional coordination with marketing, procurement & store operations",
+        ],
+        impact: "Launched innovation-driven bakery concept, increased category sales and customer engagement.",
+        metrics: ["NPD pipeline", "CAPEX approved", "PDCA improvements"],
       },
     ],
 
@@ -250,24 +271,11 @@ const cvData = {
     ],
 
     projects: [
-      {
-        title: "Triển khai CRM & Customer 360",
-        company: "Chuỗi phòng khám Linh Anh",
-        scope: "10 chi nhánh",
-        role: "Senior Business Analyst",
-        challenge: "Dữ liệu phân tán trên spreadsheets, hồ sơ khách hàng trùng lặp và quy trình bán hàng/marketing không nhất quán.",
-        actions: [
-          "Tổ chức workshop khảo sát, viết SRS & sơ đồ BPMN, quản lý backlog qua user stories",
-          "Tích hợp hệ thống bên ngoài (3CX, MISA AMIS, SMS, Zalo ZNS) qua REST APIs",
-          "Chuẩn hóa schema dữ liệu và di chuyển 7 năm dữ liệu lịch sử bằng SQL ETL",
-          "Xây dựng dashboard Power BI cho pipeline bán hàng, doanh thu & tỷ lệ chuyển đổi",
-        ],
-        impact: "Tập trung CRM cho toàn bộ chi nhánh, hợp nhất hồ sơ khách hàng, tăng tốc chiến dịch.",
-        metrics: ["7 năm dữ liệu", "10 chi nhánh", "Tích hợp REST API"],
-      },
+      // --- Dự án Công nghệ / Dữ liệu ---
       {
         title: "Tích hợp dữ liệu Marketing/Sales & Báo cáo",
         company: "Bệnh viện Siam Thailand",
+        category: "tech",
         role: "Technical BA (Data/Integration)",
         challenge: "Dữ liệu phân mảnh giữa CRM, HIS, EMR, tổng đài và nền tảng quảng cáo làm chậm ra quyết định.",
         actions: [
@@ -282,6 +290,7 @@ const cvData = {
       {
         title: "Triển khai EMR & Chữ ký điện tử",
         company: "Bệnh viện Siam Thailand",
+        category: "tech",
         role: "Technical BA / Điều phối dự án",
         challenge: "Biểu mẫu giấy và chữ ký tay gây thiếu hiệu quả và rủi ro tuân thủ.",
         actions: [
@@ -294,17 +303,50 @@ const cvData = {
         metrics: ["EMR đầu tiên", "Không giấy tờ", "Tỷ lệ áp dụng cao"],
       },
       {
-        title: "Tối ưu hiệu suất danh mục",
-        company: "AEON Mall Canary",
-        role: "Trưởng bộ phận (Vận hành dựa trên dữ liệu)",
-        challenge: "Danh mục 3,000+ SKU với rủi ro hao hụt và chuỗi cung ứng phức tạp.",
+        title: "Nền tảng Trải nghiệm Khách hàng & CDP",
+        company: "FPT Center of Applied Data Science (CADS DC5)",
+        category: "tech",
+        role: "Business Analyst",
+        challenge: "Dữ liệu khách hàng phân mảnh giữa các ngành bán lẻ & y tế, thiếu phân tích tổng hợp.",
         actions: [
-          "Phân tích dữ liệu ERP bằng Power Query/Pivot và Excel Solver",
-          "Triển khai quy trình kiểm soát tồn kho và phòng chống thất thoát",
-          "Phối hợp với trung tâm phân phối và 100+ nhà cung cấp",
+          "Phát triển tính năng CX Platform và mô-đun phân tích",
+          "Xây dựng phân tích bán lẻ cho Long Châu / FShop",
+          "Tham gia xây dựng Customer Data Platform (CDP) cho ngành Bán lẻ và Y tế",
         ],
-        impact: "Duy trì hao hụt ≤ 0.55% doanh thu, cải thiện tính sẵn sàng hàng hóa.",
-        metrics: ["≤ 0.55% hao hụt", "3,000+ SKUs", "100+ NCC"],
+        impact: "Hỗ trợ phân tích khách hàng dựa trên dữ liệu đa ngành.",
+        metrics: ["CX Platform", "CDP", "Phân tích đa ngành"],
+      },
+      {
+        title: "Triển khai CRM & Customer 360",
+        company: "Chuỗi phòng khám Linh Anh",
+        scope: "10 chi nhánh",
+        category: "tech",
+        role: "Senior Business Analyst",
+        challenge: "Dữ liệu phân tán trên spreadsheets, hồ sơ khách hàng trùng lặp và quy trình bán hàng/marketing không nhất quán.",
+        actions: [
+          "Tổ chức workshop khảo sát, viết SRS & sơ đồ BPMN, quản lý backlog qua user stories",
+          "Tích hợp hệ thống bên ngoài (3CX, MISA AMIS, SMS, Zalo ZNS) qua REST APIs",
+          "Chuẩn hóa schema dữ liệu và di chuyển 7 năm dữ liệu lịch sử bằng SQL ETL",
+          "Xây dựng dashboard Power BI cho pipeline bán hàng, doanh thu & tỷ lệ chuyển đổi",
+        ],
+        impact: "Tập trung CRM cho toàn bộ chi nhánh, hợp nhất hồ sơ khách hàng, tăng tốc chiến dịch.",
+        metrics: ["7 năm dữ liệu", "10 chi nhánh", "Tích hợp REST API"],
+      },
+      // --- Dự án Bán lẻ ---
+      {
+        title: "Dự án Innovation Bakery",
+        company: "Central Retail (Big C Đồng Nai)",
+        category: "retail",
+        role: "Quản lý Bộ phận Bánh",
+        challenge: "Danh mục bánh trì trệ, thiếu đổi mới sản phẩm và quy trình NPD có hệ thống.",
+        actions: [
+          "Chủ trì dự án 'Innovation Bakery': nghiên cứu khách hàng, phân tích đối thủ, phát triển sản phẩm mới",
+          "Lập đề xuất CAPEX nâng cấp thiết bị và tối ưu dây chuyền sản xuất",
+          "Áp dụng chu trình PDCA để cải tiến liên tục chất lượng và hiệu suất",
+          "Phối hợp đa phòng ban: marketing, mua hàng & vận hành cửa hàng",
+        ],
+        impact: "Ra mắt mô hình bakery đổi mới, tăng doanh thu danh mục và trải nghiệm khách hàng.",
+        metrics: ["NPD pipeline", "CAPEX phê duyệt", "Cải tiến PDCA"],
       },
     ],
 

@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Target, Zap, TrendingUp, BarChart3 } from "lucide-react";
+import { ChevronDown, Target, Zap, TrendingUp, BarChart3, Code2, ShoppingCart } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -31,6 +31,9 @@ export default function ProjectsShowcase() {
   const d = cvData[locale];
   const [expanded, setExpanded] = useState(null);
   const [sectionExpanded, setSectionExpanded] = useState(true);
+
+  const techProjects = useMemo(() => d.projects.filter((p) => p.category === "tech"), [d.projects]);
+  const retailProjects = useMemo(() => d.projects.filter((p) => p.category === "retail"), [d.projects]);
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-4 pt-8">
@@ -64,10 +67,19 @@ export default function ProjectsShowcase() {
               transition={{ duration: 0.35, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-        <div className="grid gap-4 md:grid-cols-2">
-          {d.projects.map((project, i) => (
+        {/* Tech Projects */}
+        <div className="mb-2 flex items-center gap-2">
+          <Code2 size={15} className="text-[var(--color-accent-teal)]" />
+          <h3 className="text-sm font-semibold text-[var(--color-accent-teal)]">
+            {locale === "en" ? "Tech / Data Projects" : "Dự án Công nghệ / Dữ liệu"}
+          </h3>
+        </div>
+        <div className="mb-6 grid gap-4 md:grid-cols-2">
+          {techProjects.map((project, i) => {
+            const globalIdx = d.projects.indexOf(project);
+            return (
             <motion.div
-              key={i}
+              key={globalIdx}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -118,20 +130,20 @@ export default function ProjectsShowcase() {
 
                 {/* Expand toggle */}
                 <motion.button
-                  onClick={() => setExpanded(expanded === i ? null : i)}
+                  onClick={() => setExpanded(expanded === globalIdx ? null : globalIdx)}
                   whileHover={{ x: 4 }}
                   className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-[var(--color-accent)] transition hover:text-[var(--color-accent-teal)]"
                 >
-                  <motion.div animate={{ rotate: expanded === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                  <motion.div animate={{ rotate: expanded === globalIdx ? 180 : 0 }} transition={{ duration: 0.3 }}>
                     <ChevronDown size={14} />
                   </motion.div>
-                  {expanded === i
+                  {expanded === globalIdx
                     ? locale === "en" ? "Collapse" : "Thu gọn"
                     : locale === "en" ? "Actions & Impact" : "Hành động & Kết quả"}
                 </motion.button>
 
                 <AnimatePresence>
-                  {expanded === i && (
+                  {expanded === globalIdx && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
@@ -167,7 +179,82 @@ export default function ProjectsShowcase() {
                 </AnimatePresence>
               </TiltCard>
             </motion.div>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* Retail Projects */}
+        <div className="mb-2 flex items-center gap-2">
+          <ShoppingCart size={15} className="text-amber-400" />
+          <h3 className="text-sm font-semibold text-amber-400">
+            {locale === "en" ? "Retail Projects" : "Dự án Bán lẻ"}
+          </h3>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {retailProjects.map((project, i) => {
+            const globalIdx = d.projects.indexOf(project);
+            return (
+            <motion.div
+              key={globalIdx}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, type: "spring", stiffness: 150 }}
+            >
+              <TiltCard className="card-glow group relative rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-5 transition-all duration-300 hover:border-amber-400/40 hover:shadow-[0_0_30px_var(--color-neon-glow)]">
+                <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-[10px] font-bold text-white shadow-lg">
+                  {String(techProjects.length + i + 1).padStart(2, "0")}
+                </div>
+                <div className="mb-3">
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">{project.title}</h3>
+                  <p className="text-xs text-[var(--color-text-muted)]">{project.company} {project.scope && `· ${project.scope}`}</p>
+                  <span className="mt-1 inline-block rounded-md bg-amber-400/10 px-2 py-0.5 text-[10px] font-medium text-amber-400">{project.role}</span>
+                </div>
+                <div className="mb-3 flex flex-wrap gap-1.5">
+                  {project.metrics.map((m, mi) => (
+                    <motion.span key={mi} initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 + mi * 0.08 }}
+                      className="inline-flex items-center gap-1 rounded-full border border-amber-400/20 bg-gradient-to-r from-amber-400/10 to-amber-500/10 px-2.5 py-0.5 text-[10px] font-medium text-amber-400">
+                      <TrendingUp size={10} /> {m}
+                    </motion.span>
+                  ))}
+                </div>
+                <div className="mb-3 flex items-start gap-2 rounded-lg bg-[var(--color-dashboard-bg)]/50 p-2.5">
+                  <Target size={13} className="mt-0.5 shrink-0 text-amber-400/70" />
+                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{project.challenge}</p>
+                </div>
+                <motion.button
+                  onClick={() => setExpanded(expanded === globalIdx ? null : globalIdx)}
+                  whileHover={{ x: 4 }}
+                  className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-amber-400 transition hover:text-amber-300"
+                >
+                  <motion.div animate={{ rotate: expanded === globalIdx ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                    <ChevronDown size={14} />
+                  </motion.div>
+                  {expanded === globalIdx
+                    ? locale === "en" ? "Collapse" : "Thu gọn"
+                    : locale === "en" ? "Actions & Impact" : "Hành động & Kết quả"}
+                </motion.button>
+                <AnimatePresence>
+                  {expanded === globalIdx && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: "easeInOut" }} className="overflow-hidden">
+                      <ul className="mt-3 space-y-2 border-l-2 border-amber-400/30 pl-3">
+                        {project.actions.map((action, ai) => (
+                          <motion.li key={ai} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: ai * 0.08 }} className="flex items-start gap-2 text-xs text-[var(--color-text-muted)]">
+                            <Zap size={10} className="mt-0.5 shrink-0 text-amber-400" /> {action}
+                          </motion.li>
+                        ))}
+                      </ul>
+                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                        className="mt-3 rounded-lg border border-amber-400/20 bg-amber-400/5 px-3 py-2.5 text-xs text-amber-400">
+                        <strong>{locale === "en" ? "Impact:" : "Kết quả:"}</strong> {project.impact}
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </TiltCard>
+            </motion.div>
+            );
+          })}
         </div>
             </motion.div>
           )}
