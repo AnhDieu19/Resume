@@ -11,7 +11,7 @@ const cvData = {
       "Senior-level Business Data Analyst with a strong technical background and over 3 years of experience delivering customer data and revenue analytics across retail chains and healthcare clinics. Strengths include CRM/CDP requirements, API integrations, and BI analytics focusing on sales pipelines, revenue growth, and customer retention.",
 
     kpis: [
-      { value: "4+", label: "Years BA Experience", icon: "Calendar" },
+      { value: "3+", label: "Years BA Experience", icon: "Calendar" },
       { value: "3+", label: "Domains Covered", icon: "Layers" },
       { value: "7yr", label: "Data Migrated (ETL)", icon: "Database" },
       { value: "10+", label: "Systems Integrated", icon: "Plug" },
@@ -224,7 +224,7 @@ const cvData = {
       "Chuyên viên Phân tích Dữ liệu Kinh doanh cấp cao với nền tảng kỹ thuật vững chắc, hơn 3 năm kinh nghiệm phân tích dữ liệu khách hàng và doanh thu cho chuỗi bán lẻ và phòng khám. Thế mạnh: CRM/CDP, tích hợp API, và phân tích BI tập trung vào pipeline bán hàng, tăng trưởng doanh thu và giữ chân khách hàng.",
 
     kpis: [
-      { value: "4+", label: "Năm kinh nghiệm BA", icon: "Calendar" },
+      { value: "3+", label: "Năm kinh nghiệm BA", icon: "Calendar" },
       { value: "3+", label: "Lĩnh vực", icon: "Layers" },
       { value: "7 năm", label: "Dữ liệu đã di chuyển", icon: "Database" },
       { value: "10+", label: "Hệ thống đã tích hợp", icon: "Plug" },
