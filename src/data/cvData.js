@@ -13,7 +13,7 @@ const cvData = {
     kpis: [
       { value: "3+", label: "Years BA Experience", icon: "Calendar" },
       { value: "7yr", label: "Data Migrated (ETL)", icon: "Database" },
-      { value: "6+", label: "API Integrations", icon: "Plug" },
+      { value: "5yr", label: "Retail Operations", icon: "Plug" },
       { value: "3", label: "Domains: Retail · Healthcare · Platform", icon: "Layers" },
     ],
 
@@ -226,7 +226,7 @@ const cvData = {
     kpis: [
       { value: "3+", label: "Năm kinh nghiệm BA", icon: "Calendar" },
       { value: "7 năm", label: "Dữ liệu ETL", icon: "Database" },
-      { value: "6+", label: "Tích hợp API", icon: "Plug" },
+      { value: "5 năm", label: "Vận hành Bán lẻ", icon: "Plug" },
       { value: "3", label: "Lĩnh vực: Bán lẻ · Y tế · Nền tảng", icon: "Layers" },
     ],
 
