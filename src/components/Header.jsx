@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { Phone, Mail, Linkedin, MapPin, Globe } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail, Linkedin, MapPin, Globe, Sun, Moon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import cvData from "../data/cvData";
 
 const NAV_ITEMS = [
@@ -36,6 +37,7 @@ function useTyping(text, speed = 45) {
 
 export default function Header() {
   const { locale, toggleLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const d = cvData[locale];
   const [activeNav, setActiveNav] = useState("summary");
   const { displayed: typedTitle, done: titleDone } = useTyping(d.title, 40);
@@ -110,12 +112,33 @@ export default function Header() {
               <MapPin size={12} /> {d.location}
             </span>
 
+            {/* Theme toggle */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-[var(--color-dashboard-bg)] hover:shadow-[0_0_12px_var(--color-neon-glow)]"
+              aria-label="Toggle theme"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === "dark" ? (
+                  <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.25 }}>
+                    <Sun size={14} />
+                  </motion.div>
+                ) : (
+                  <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.25 }}>
+                    <Moon size={14} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+
             {/* Language toggle */}
             <motion.button
               onClick={toggleLanguage}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="neon-ring ml-1 inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)] px-3 py-1.5 text-xs font-semibold text-[var(--color-accent)] transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-[var(--color-dashboard-bg)]"
+              className="neon-ring inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)] px-3 py-1.5 text-xs font-semibold text-[var(--color-accent)] transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-[var(--color-dashboard-bg)]"
             >
               <Globe size={12} />
               {locale === "en" ? "VI" : "EN"}

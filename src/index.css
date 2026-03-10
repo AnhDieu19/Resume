@@ -12,6 +12,19 @@
   --color-teal-glow: rgba(45, 212, 191, 0.3);
 }
 
+/* ── Light mode overrides ── */
+[data-theme="light"] {
+  --color-dashboard-bg: #f1f5f9;
+  --color-card-bg: #ffffff;
+  --color-card-border: #cbd5e1;
+  --color-accent: #2563eb;
+  --color-accent-teal: #0d9488;
+  --color-text-primary: #0f172a;
+  --color-text-muted: #475569;
+  --color-neon-glow: rgba(37, 99, 235, 0.2);
+  --color-teal-glow: rgba(13, 148, 136, 0.2);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -131,6 +144,21 @@ body {
   background-size: 40px 40px;
 }
 
+[data-theme="light"] .grid-pattern {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(203, 213, 225, 0.6);
+}
+
+[data-theme="light"] .card-glow::after {
+  background: var(--color-card-bg);
+}
+
 /* ── Shimmer sweep animation for text ── */
 @keyframes shimmer {
   0%   { background-position: -200% center; }
@@ -142,7 +170,7 @@ body {
     90deg,
     var(--color-accent) 0%,
     var(--color-accent-teal) 25%,
-    #fff 50%,
+    var(--color-text-primary) 50%,
     var(--color-accent-teal) 75%,
     var(--color-accent) 100%
   );
