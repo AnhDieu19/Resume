@@ -113,7 +113,7 @@ const cvData = {
       {
         company: "Siam Thailand Hospital",
         role: "Business Data Analyst",
-        period: "Jul 2024 – Present",
+        period: "Jul 2024 – Oct 2025",
         type: "Full-time",
         domain: "healthcare",
         bullets: [
@@ -326,7 +326,7 @@ const cvData = {
       {
         company: "Bệnh viện Siam Thailand",
         role: "Chuyên viên Phân tích Dữ liệu Kinh doanh",
-        period: "07/2024 – Hiện tại",
+        period: "07/2024 – 10/2025",
         type: "Toàn thời gian",
         domain: "healthcare",
         bullets: [
