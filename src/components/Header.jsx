@@ -67,8 +67,8 @@ export default function Header() {
   return (
     <header className="relative z-50 border-b border-[var(--color-card-border)] bg-[var(--color-dashboard-bg)]/80 backdrop-blur-xl md:sticky md:top-0">
       <div className="mx-auto max-w-6xl px-4 py-3 md:py-4">
-        {/* Top row */}
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        {/* Top row: Name + Theme/Lang toggles */}
+        <div className="flex items-center justify-between">
           {/* Name & Title */}
           <div>
             <motion.h1
@@ -87,37 +87,14 @@ export default function Header() {
             </p>
           </div>
 
-          {/* Contact + Lang toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap items-center gap-2"
-          >
-            {[
-              { href: `tel:${d.phone}`, icon: Phone, label: d.phone },
-              { href: `mailto:${d.email}`, icon: Mail, label: d.email },
-              { href: d.linkedin, icon: Linkedin, label: "LinkedIn", external: true },
-            ].map(({ href, icon: Icon, label, external }) => (
-              <a
-                key={label}
-                href={href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-card-border)] bg-[var(--color-card-bg)]/60 px-3 py-1.5 text-xs text-[var(--color-text-muted)] backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:shadow-[0_0_12px_var(--color-neon-glow)]"
-              >
-                <Icon size={12} /> {label}
-              </a>
-            ))}
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-card-border)] bg-[var(--color-card-bg)]/60 px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
-              <MapPin size={12} /> {d.location}
-            </span>
-
+          {/* Theme + Language toggles */}
+          <div className="flex items-center gap-2">
             {/* Theme toggle */}
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-[var(--color-dashboard-bg)] hover:shadow-[0_0_12px_var(--color-neon-glow)]"
+              className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-[var(--color-dashboard-bg)] hover:shadow-[0_0_12px_var(--color-neon-glow)]"
               aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -143,8 +120,34 @@ export default function Header() {
               <Globe size={12} />
               {locale === "en" ? "VI" : "EN"}
             </motion.button>
-          </motion.div>
+          </div>
         </div>
+
+        {/* Contact info row */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-2 flex flex-wrap items-center gap-2"
+        >
+          {[
+            { href: `tel:${d.phone}`, icon: Phone, label: d.phone },
+            { href: `mailto:${d.email}`, icon: Mail, label: d.email },
+            { href: d.linkedin, icon: Linkedin, label: "LinkedIn", external: true },
+          ].map(({ href, icon: Icon, label, external }) => (
+            <a
+              key={label}
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-card-border)] bg-[var(--color-card-bg)]/60 px-3 py-1.5 text-xs text-[var(--color-text-muted)] backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:shadow-[0_0_12px_var(--color-neon-glow)]"
+            >
+              <Icon size={12} /> {label}
+            </a>
+          ))}
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-card-border)] bg-[var(--color-card-bg)]/60 px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
+            <MapPin size={12} /> {d.location}
+          </span>
+        </motion.div>
 
         {/* Navigation bar */}
         <nav className="mt-3 flex flex-wrap gap-1.5">
