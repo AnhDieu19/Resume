@@ -291,7 +291,7 @@ export default function SkillsChart() {
           </div>
         </div>
 
-        {/* Tool tags - one row per group */}
+        {/* Tool tags */}
         <div className="mt-6 space-y-2">
           {d.toolGroups.map((group, gi) => (
             <motion.div
@@ -300,25 +300,28 @@ export default function SkillsChart() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: gi * 0.07 }}
-              className="flex items-center gap-3 rounded-2xl bg-[var(--color-card-bg)]/40 px-3 py-2"
+              className="rounded-2xl bg-[var(--color-card-bg)]/40 px-3 py-2"
             >
-              <span className="w-28 shrink-0 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.35em] text-[var(--color-text-muted)]/70">
-                {group.category}
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {group.tools.map((tool, ti) => (
-                  <motion.span
-                    key={ti}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: gi * 0.05 + ti * 0.03 }}
-                    whileHover={{ scale: 1.06, y: -1 }}
-                    className="flex h-8 items-center justify-center rounded-full bg-[var(--color-dashboard-bg)]/70 px-4 text-[11px] text-[var(--color-text-primary)] transition duration-200 hover:bg-[var(--color-card-border)]/50 hover:text-[var(--color-accent)]"
-                  >
-                    {tool}
-                  </motion.span>
-                ))}
+              {/* Mobile: label trên pills dưới | Desktop: 1 hàng */}
+              <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+                <span className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.35em] text-[var(--color-text-muted)]/70 sm:w-28 sm:whitespace-nowrap">
+                  {group.category}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {group.tools.map((tool, ti) => (
+                    <motion.span
+                      key={ti}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: gi * 0.05 + ti * 0.03 }}
+                      whileHover={{ scale: 1.06, y: -1 }}
+                      className="flex h-7 items-center justify-center rounded-full bg-[var(--color-dashboard-bg)]/70 px-3 text-[11px] text-[var(--color-text-primary)] transition duration-200 hover:bg-[var(--color-card-border)]/50 hover:text-[var(--color-accent)]"
+                    >
+                      {tool}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
