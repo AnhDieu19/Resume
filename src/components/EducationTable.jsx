@@ -315,8 +315,8 @@ export default function EducationTable() {
                   className="max-h-full max-w-full rounded-xl object-contain shadow-lg"
                 />
               </div>
-            ) : /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
-              /* Mobile: Chrome blocks PDF iframe — open in new tab instead */
+            ) : window.innerWidth < 1024 ? (
+              /* Small screens: Chrome blocks PDF iframe — open in new tab instead */
               <div className="flex flex-1 flex-col items-center justify-center gap-5 rounded-b-2xl bg-[var(--color-dashboard-bg)] p-8 text-center">
                 <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--color-accent)]/10 ring-1 ring-[var(--color-accent)]/30">
                   <Award size={36} className="text-[var(--color-accent)]" />
