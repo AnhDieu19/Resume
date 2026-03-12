@@ -48,7 +48,7 @@ export default function SkillsNetwork() {
     // Center node
     nodes.push({
       id: "center",
-      name: "Jason",
+      name: "Dương Bá Diệu",
       symbolSize: 52,
       category: 0,
       value: 100,
