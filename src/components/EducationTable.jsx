@@ -315,6 +315,28 @@ export default function EducationTable() {
                   className="max-h-full max-w-full rounded-xl object-contain shadow-lg"
                 />
               </div>
+            ) : /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? (
+              /* Mobile: Chrome blocks PDF iframe — open in new tab instead */
+              <div className="flex flex-1 flex-col items-center justify-center gap-5 rounded-b-2xl bg-[var(--color-dashboard-bg)] p-8 text-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--color-accent)]/10 ring-1 ring-[var(--color-accent)]/30">
+                  <Award size={36} className="text-[var(--color-accent)]" />
+                </div>
+                <div>
+                  <p className="mb-1 text-base font-semibold text-[var(--color-text-primary)]">{pdfModal.name}</p>
+                  <p className="text-xs text-[var(--color-text-muted)]">
+                    {locale === "en" ? "Tap below to view the certificate" : "Nhấn bên dưới để xem chứng chỉ"}
+                  </p>
+                </div>
+                <a
+                  href={pdfModal.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_16px_var(--color-neon-glow)] transition-all active:scale-95"
+                >
+                  <ExternalLink size={16} />
+                  {locale === "en" ? "Open Certificate" : "Mở chứng chỉ"}
+                </a>
+              </div>
             ) : (
               <iframe
                 src={`${pdfModal.url}#toolbar=0&navpanes=0&scrollbar=0`}
