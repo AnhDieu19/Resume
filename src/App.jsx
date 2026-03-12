@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import Header from "./components/Header";
 import KPICards from "./components/KPICards";
-import SkillsChart from "./components/SkillsChart";
 import SkillsNetwork from "./components/SkillsNetwork";
 import ProjectsShowcase from "./components/ProjectsShowcase";
 import ExperienceTimeline from "./components/ExperienceTimeline";
@@ -67,7 +66,6 @@ function App() {
       <Header />
       <main className="relative z-10 pb-8">
         <KPICards />
-        <SkillsChart />
         <SkillsNetwork />
         <ProjectsShowcase />
         <ExperienceTimeline />
