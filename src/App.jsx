@@ -57,6 +57,7 @@ function App() {
 
   return (
     <div className="grid-pattern relative min-h-screen bg-[var(--color-dashboard-bg)] text-[var(--color-text-primary)]">
+      <div className="mx-auto max-w-[1400px]">
       {/* Scroll progress */}
       <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
 
@@ -72,6 +73,7 @@ function App() {
         <EducationTable />
       </main>
       <Footer />
+      </div>
     </div>
   );
 }
