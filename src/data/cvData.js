@@ -5,7 +5,7 @@ const cvData = {
     location: "Thu Duc City, Ho Chi Minh City, Vietnam",
     phone: "(+84) 916 273 889",
     email: "duongbadieu@gmail.com",
-    linkedin: "https://linkedin.com/in/duong-ba-dieu-8128286b",
+    linkedin: "https://www.linkedin.com/in/duong-ba-dieu-8128286b/",
 
     summary:
       "Senior-level Business Data Analyst with a strong technical background and over 3 years of experience delivering customer data and revenue analytics across retail chains and healthcare clinics. Strengths include CRM/CDP requirements, API integrations, and BI analytics focusing on sales pipelines, revenue growth, and customer retention.",
@@ -127,9 +127,9 @@ const cvData = {
         bullets: [
           "Customers Experience Platform development and analytics",
           "Retail Analysis for Long Chau / FShop use cases",
-          "Customers Data Platform (CDP) for Retail and Healthcare domains",
+          "Customers Data Platform (CDP) for Retail and Pharmacy/Healthcare domains",
         ],
-        tags: ["CDP", "Retail Analytics", "CX Platform", "Healthcare"],
+        tags: ["CDP", "Retail Analytics", "CX Platform", "Healthcare", "Pharmacy"],
       },
       {
         company: "Siam Thailand Hospital",
@@ -213,22 +213,37 @@ const cvData = {
 
     education: [
       { degree: "Bachelor of Business Administration (BBA)", institution: "University of Economics, Danang", year: "2012 – 2016", note: "GPA 3.0/4.0" },
-      { degree: "Future Manager Program", institution: "Central Retail & Asian Institute of Technology", year: "2016 – 2017", note: "" },
-      { degree: "Business Analysis Foundation", institution: "Hai Lua Institute", year: "2022", note: "Capstone: Document Management System" },
-      { degree: "Web Development Program", institution: "Funix (FPT)", year: "2021 – 2022", note: "JavaScript, HTML/CSS, Node.js, MS SQL" },
+      { degree: "Future Manager Program", institution: "Central Retail & Asian Institute of Technology", year: "2016 – 2017", note: "", pdf: "/Modern_Retail_AIT.pdf" },
+      { degree: "Business Analysis Foundation", institution: "Hai Lúa Institute", year: "2022", note: "Capstone: Document Management System", pdf: "/BA_Foundation_HaiLua.pdf" },
+      { degree: "Web Development Program", institution: "Funix (FPT)", year: "2021 – 2022", note: "JavaScript, HTML/CSS, Node.js, MS SQL", pdf: "/Web_Dev_FunixFPT.pdf" },
     ],
 
     certifications: [
-      { name: "Digital Transformation – BA & Information Systems", issuer: "Coursera" },
-      { name: "Product Analytics Micro-Certification (PAC), Level 2", issuer: "PAC" },
-      { name: "ICPM Certified Supervisor; Building High Performing Teams", issuer: "ICPM" },
-      { name: "Power BI for Data Analytics", issuer: "RMIT University" },
-      { name: "Omnichannel Retail", issuer: "RMIT University" },
-      { name: "Salesforce Operations", issuer: "Salesforce" },
+      { group: "data",       name: "Digital Transformation – BA & Information Systems", issuer: "Coursera",                      pdf: "/Digital_Transformation_Coursera.pdf" },
+      { group: "data",       name: "Information Systems",                                issuer: "University of Minnesota (Coursera)", pdf: "/InformationSystems_UMN_Coursera.pdf" },
+      { group: "data",       name: "Product Analytics Micro-Certification (PAC), Level 2", issuer: "Product School",              pdf: "/Product_Analytics_PAC.pdf" },
+      { group: "data",       name: "Python for Supply Chain",                            issuer: "",                              pdf: "/Python_SCM.pdf" },
+      { group: "data",       name: "SQL Fundamentals",                                   issuer: "",                              pdf: "/Certificate_SQL.png" },
+      { group: "tech",       name: "AI Certificate",                                     issuer: "FPT",                           pdf: "/AI_FPT.pdf" },
+      { group: "tech",       name: "Intelligent Automation, Level 2",                    issuer: "",                              pdf: "/Intelligent_Level2.pdf" },
+      { group: "tech",       name: "JavaScript Basics",                                  issuer: "",                              pdf: "/Javascript_Basic.png" },
+      { group: "tech",       name: "Computer Hardware Basics",                           issuer: "",                              pdf: "/Hardware_Cert.pdf" },
+      { group: "tech",       name: "Salesforce Operations",                              issuer: "Salesforce",                    pdf: "/Salesforce_Cert.pdf" },
+      { group: "tech",       name: "Agile Methodology",                                  issuer: "",                              pdf: "/Agile_Cert.pdf" },
+      { group: "strategy",   name: "Strategic Management",                               issuer: "",                              pdf: "/Strategic_Management.pdf" },
+      { group: "strategy",   name: "Business Strategy",                                  issuer: "",                              pdf: "/Business_Strategy.pdf" },
+      { group: "strategy",   name: "Starting a Business",                                issuer: "RMIT University",               pdf: "/Starting_Business_RMIT.pdf" },
+      { group: "strategy",   name: "Procurement Fundamentals",                           issuer: "",                              pdf: "/Procurement_Basic.pdf" },
+      { group: "leadership", name: "ICPM Certified Supervisor; Building High Performing Teams", issuer: "ICPM",               pdf: "/ICPM_Supervisor.pdf" },
+      { group: "leadership", name: "Leadership Program",                                 issuer: "Dartmouth College",             pdf: "/Leadership_Dartmouth.pdf" },
+      { group: "leadership", name: "Action Learning",                                    issuer: "",                              pdf: "/Action_Learning.pdf" },
+      { group: "leadership", name: "Philosophy for Managers",                            issuer: "",                              pdf: "/Philosophy_Manager.pdf" },
+      { group: "retail",     name: "Omnichannel Retail",                                 issuer: "RMIT University",               pdf: "/Omnichannel_Retail_RMIT.pdf" },
+      { group: "retail",     name: "Modern Retail & Trade Management",                   issuer: "",                              pdf: "/Retail_Modern_Trade.pdf" },
     ],
 
     languages: [
-      { name: "English", level: "TOEIC 790 (2016) – Fluent business communication", percent: 79 },
+      { name: "English", level: "TOEIC 790 (2016) – Fluent business communication", percent: 79, pdf: "/TOEIC_790_2016.pdf" },
       { name: "Vietnamese", level: "Native", percent: 100 },
     ],
   },
@@ -239,7 +254,7 @@ const cvData = {
     location: "TP. Thủ Đức, TP. Hồ Chí Minh, Việt Nam",
     phone: "(+84) 916 273 889",
     email: "duongbadieu@gmail.com",
-    linkedin: "https://linkedin.com/in/duong-ba-dieu-8128286b",
+    linkedin: "https://www.linkedin.com/in/duong-ba-dieu-8128286b/",
 
     summary:
       "Chuyên viên Phân tích Dữ liệu Kinh doanh cấp cao với nền tảng kỹ thuật vững chắc, hơn 3 năm kinh nghiệm phân tích dữ liệu khách hàng và doanh thu cho chuỗi bán lẻ và phòng khám. Thế mạnh: CRM/CDP, tích hợp API, và phân tích BI tập trung vào pipeline bán hàng, tăng trưởng doanh thu và giữ chân khách hàng.",
@@ -330,7 +345,7 @@ const cvData = {
           "Xây dựng dashboard Power BI cho pipeline bán hàng, doanh thu & tỷ lệ chuyển đổi",
         ],
         impact: "Tập trung CRM cho toàn bộ chi nhánh, hợp nhất hồ sơ khách hàng, tăng tốc chiến dịch.",
-        metrics: ["7 năm dữ liệu", "10 chi nhánh", "Tích hợp REST API"],
+        metrics: ["Xử lý và import 7 năm dữ liệu kinh doanh", "10 chi nhánh", "Tích hợp REST API"],
       },
       // --- Dự án Bán lẻ ---
       {
@@ -426,7 +441,7 @@ const cvData = {
         type: "Thực tập",
         domain: "hospitality",
         bullets: [
-          "Hỗ trợ sự kiện MICE & tiệc cưới; liên hệ NCC & khách VIP",
+          "Hỗ trợ sự kiện MICE; liên hệ NCC & khách VIP",
         ],
         tags: ["MICE", "B2B"],
       },
@@ -446,22 +461,37 @@ const cvData = {
 
     education: [
       { degree: "Cử nhân Quản trị Kinh doanh (BBA)", institution: "Đại học Kinh tế Đà Nẵng", year: "2012 – 2016", note: "GPA 3.0/4.0" },
-      { degree: "Chương trình Future Manager", institution: "Central Retail & AIT", year: "2016 – 2017", note: "" },
-      { degree: "Nền tảng Phân tích Kinh doanh", institution: "Viện Hai Lua", year: "2022", note: "Đồ án: Hệ thống Quản lý Tài liệu" },
-      { degree: "Chương trình Phát triển Web", institution: "Funix (FPT)", year: "2021 – 2022", note: "JavaScript, HTML/CSS, Node.js, MS SQL" },
+      { degree: "Chương trình Future Manager", institution: "Central Retail & AIT", year: "2016 – 2017", note: "", pdf: "/Modern_Retail_AIT.pdf" },
+      { degree: "Nền tảng Phân tích Kinh doanh", institution: "Viện Hai Lúa", year: "2022", note: "Đồ án: Hệ thống Quản lý Tài liệu", pdf: "/BA_Foundation_HaiLua.pdf" },
+      { degree: "Chương trình Phát triển Web", institution: "Funix (FPT)", year: "2021 – 2022", note: "JavaScript, HTML/CSS, Node.js, MS SQL", pdf: "/Web_Dev_FunixFPT.pdf" },
     ],
 
     certifications: [
-      { name: "Chuyển đổi số – BA & Hệ thống Thông tin", issuer: "Coursera" },
-      { name: "Product Analytics Micro-Certification (PAC), Level 2", issuer: "PAC" },
-      { name: "ICPM Certified Supervisor; Building High Performing Teams", issuer: "ICPM" },
-      { name: "Power BI for Data Analytics", issuer: "RMIT University" },
-      { name: "Omnichannel Retail", issuer: "RMIT University" },
-      { name: "Salesforce Operations", issuer: "Salesforce" },
+      { group: "data",       name: "Chuyển đổi số – BA & Hệ thống Thông tin",           issuer: "Coursera",                          pdf: "/Digital_Transformation_Coursera.pdf" },
+      { group: "data",       name: "Hệ thống Thông tin",                                 issuer: "Đại học Minnesota (Coursera)",        pdf: "/InformationSystems_UMN_Coursera.pdf" },
+      { group: "data",       name: "Product Analytics Micro-Certification (PAC), Level 2", issuer: "Product School",                  pdf: "/Product_Analytics_PAC.pdf" },
+      { group: "data",       name: "Python cho Chuỗi Cung ứng",                         issuer: "",                                  pdf: "/Python_SCM.pdf" },
+      { group: "data",       name: "Nền tảng SQL",                                    issuer: "",                                  pdf: "/Certificate_SQL.png" },
+      { group: "tech",       name: "Chứng chỉ AI",                                    issuer: "FPT",                               pdf: "/AI_FPT.pdf" },
+      { group: "tech",       name: "Tự động hóa Thông minh, Cấp độ 2",              issuer: "",                                  pdf: "/Intelligent_Level2.pdf" },
+      { group: "tech",       name: "JavaScript Cơ bản",                               issuer: "",                                  pdf: "/Javascript_Basic.png" },
+      { group: "tech",       name: "Phần cứng Máy tính Cơ bản",                     issuer: "",                                  pdf: "/Hardware_Cert.pdf" },
+      { group: "tech",       name: "Vận hành Salesforce",                              issuer: "Salesforce",                        pdf: "/Salesforce_Cert.pdf" },
+      { group: "tech",       name: "Agile Methodology",                                  issuer: "",                                  pdf: "/Agile_Cert.pdf" },
+      { group: "strategy",   name: "Quản trị Chiến lược",                            issuer: "",                                  pdf: "/Strategic_Management.pdf" },
+      { group: "strategy",   name: "Chiến lược Kinh doanh",                           issuer: "",                                  pdf: "/Business_Strategy.pdf" },
+      { group: "strategy",   name: "Khởi nghiệp Kinh doanh",                           issuer: "RMIT University",                   pdf: "/Starting_Business_RMIT.pdf" },
+      { group: "strategy",   name: "Mua hàng Cơ bản",                                  issuer: "",                                  pdf: "/Procurement_Basic.pdf" },
+      { group: "leadership", name: "ICPM Certified Supervisor; Building High Performing Teams", issuer: "ICPM",                   pdf: "/ICPM_Supervisor.pdf" },
+      { group: "leadership", name: "Chương trình Lãnh đạo",                          issuer: "Dartmouth College",                  pdf: "/Leadership_Dartmouth.pdf" },
+      { group: "leadership", name: "Action Learning",                                    issuer: "",                                  pdf: "/Action_Learning.pdf" },
+      { group: "leadership", name: "Triết học cho Quản lý",                          issuer: "",                                  pdf: "/Philosophy_Manager.pdf" },
+      { group: "retail",     name: "Omnichannel Retail",                                 issuer: "RMIT University",                   pdf: "/Omnichannel_Retail_RMIT.pdf" },
+      { group: "retail",     name: "Quản lý Bán lẻ Hiện đại",                      issuer: "",                                  pdf: "/Retail_Modern_Trade.pdf" },
     ],
 
     languages: [
-      { name: "Tiếng Anh", level: "TOEIC 790 (2016) – Giao tiếp kinh doanh", percent: 79 },
+      { name: "Tiếng Anh", level: "TOEIC 790 (2016) – Giao tiếp kinh doanh", percent: 79, pdf: "/TOEIC_790_2016.pdf" },
       { name: "Tiếng Việt", level: "Bản ngữ", percent: 100 },
     ],
   },

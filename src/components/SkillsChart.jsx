@@ -291,29 +291,30 @@ export default function SkillsChart() {
           </div>
         </div>
 
-        {/* Tool tags - staggered animation */}
-        <div className="mt-6 space-y-3">
+        {/* Tool tags - one row per group */}
+        <div className="mt-6 space-y-2">
           {d.toolGroups.map((group, gi) => (
             <motion.div
               key={gi}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: gi * 0.08 }}
+              transition={{ delay: gi * 0.07 }}
+              className="flex items-center gap-3 rounded-2xl bg-[var(--color-card-bg)]/40 px-3 py-2"
             >
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-muted)]/60">
+              <span className="w-28 shrink-0 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.35em] text-[var(--color-text-muted)]/70">
                 {group.category}
               </span>
-              <div className="mt-1 flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {group.tools.map((tool, ti) => (
                   <motion.span
                     key={ti}
-                    initial={{ opacity: 0, scale: 0.7 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: gi * 0.05 + ti * 0.03 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="cursor-default rounded-md border border-[var(--color-card-border)] bg-[var(--color-dashboard-bg)] px-2 py-0.5 text-[11px] text-[var(--color-text-muted)] transition-all duration-200 hover:border-[var(--color-accent-teal)] hover:text-[var(--color-accent-teal)] hover:shadow-[0_0_10px_var(--color-teal-glow)]"
+                    whileHover={{ scale: 1.06, y: -1 }}
+                    className="flex h-8 items-center justify-center rounded-full bg-[var(--color-dashboard-bg)]/70 px-4 text-[11px] text-[var(--color-text-primary)] transition duration-200 hover:bg-[var(--color-card-border)]/50 hover:text-[var(--color-accent)]"
                   >
                     {tool}
                   </motion.span>

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Award, Globe, ChevronDown } from "lucide-react";
+import { GraduationCap, Award, Globe, ChevronDown, ExternalLink, X, Download } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import cvData from "../data/cvData";
 
@@ -15,13 +16,31 @@ const TAB_LABELS = {
   vi: { education: "Học vấn", certifications: "Chứng chỉ", languages: "Ngôn ngữ" },
 };
 
+const GROUP_ORDER = ["data", "tech", "strategy", "leadership", "retail"];
+
+const GROUP_META = {
+  data:       { en: "Data & Analytics",         vi: "Dữ liệu & Phân tích",      color: "var(--color-accent)" },
+  tech:       { en: "Technology & IT",           vi: "Công nghệ & IT",           color: "var(--color-accent-teal)" },
+  strategy:   { en: "Strategy & Business",       vi: "Chiến lược & Kinh doanh",  color: "#a855f7" },
+  leadership: { en: "Leadership & Management",   vi: "Lãnh đạo & Quản lý",       color: "#f59e0b" },
+  retail:     { en: "Retail & Operations",       vi: "Bán lẻ & Vận hành",        color: "#10b981" },
+};
+
 export default function EducationTable() {
   const { locale } = useLanguage();
   const d = cvData[locale];
   const [tab, setTab] = useState("education");
   const [sectionExpanded, setSectionExpanded] = useState(true);
+  const [pdfModal, setPdfModal] = useState(null); // { url, name }
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") setPdfModal(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
+    <>
     <section id="education" className="mx-auto max-w-6xl px-4 pt-8">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <button
@@ -87,6 +106,9 @@ export default function EducationTable() {
                     <th className="px-4 py-3 font-medium">{locale === "en" ? "Institution" : "Tổ chức"}</th>
                     <th className="px-4 py-3 font-medium">{locale === "en" ? "Year" : "Năm"}</th>
                     <th className="px-4 py-3 font-medium">{locale === "en" ? "Note" : "Ghi chú"}</th>
+                    {d.education.some((e) => e.pdf) && (
+                      <th className="px-4 py-3 font-medium">PDF</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -104,6 +126,19 @@ export default function EducationTable() {
                         <span className="rounded-md bg-[var(--color-accent-teal)]/10 px-2 py-0.5 text-[var(--color-accent-teal)]">{edu.year}</span>
                       </td>
                       <td className="px-4 py-3 text-[var(--color-text-muted)]">{edu.note || "—"}</td>
+                      {d.education.some((e) => e.pdf) && (
+                        <td className="px-4 py-3">
+                          {edu.pdf && (
+                            <button
+                              onClick={() => setPdfModal({ url: edu.pdf, name: edu.degree })}
+                              className="flex items-center gap-1 rounded-md border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-medium text-[var(--color-accent)] transition-all duration-200 hover:bg-[var(--color-accent)]/20 hover:shadow-[0_0_8px_var(--color-neon-glow)]"
+                            >
+                              <ExternalLink size={9} />
+                              {locale === "en" ? "View" : "Xem"}
+                            </button>
+                          )}
+                        </td>
+                      )}
                     </motion.tr>
                   ))}
                 </tbody>
@@ -119,26 +154,67 @@ export default function EducationTable() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
+              className="space-y-3"
             >
-              {d.certifications.map((cert, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.06, type: "spring", stiffness: 200 }}
-                  whileHover={{ scale: 1.03, borderColor: "rgba(59,130,246,0.4)" }}
-                  className="card-glow rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-3 transition-all duration-300 hover:shadow-[0_0_20px_var(--color-neon-glow)] cursor-default"
-                >
-                  <div className="mb-1 flex items-center gap-2">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent-teal)]/15">
-                      <Award size={12} className="text-[var(--color-accent-teal)]" />
+              {GROUP_ORDER.map((gKey) => {
+                const certs = d.certifications.filter((c) => c.group === gKey);
+                if (!certs.length) return null;
+                const meta = GROUP_META[gKey];
+                return (
+                  <div key={gKey}>
+                    {/* Group header */}
+                    <div className="mb-1 flex items-center gap-2">
+                      <span
+                        className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest shrink-0"
+                        style={{ background: `color-mix(in srgb, ${meta.color} 15%, transparent)`, color: meta.color }}
+                      >
+                        {meta[locale]}
+                      </span>
+                      <div className="h-px flex-1" style={{ background: `color-mix(in srgb, ${meta.color} 25%, transparent)` }} />
                     </div>
-                    <span className="text-xs font-medium text-[var(--color-text-primary)]">{cert.name}</span>
+                    {/* Compact cert list – 2 columns */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[0, 1].map((col) =>
+                        certs.filter((_, i) => i % 2 === col).length > 0 ? (
+                          <div key={col} className="overflow-hidden rounded-lg border border-[var(--color-card-border)] bg-[var(--color-card-bg)] divide-y divide-[var(--color-card-border)]/50">
+                            {certs
+                              .filter((_, i) => i % 2 === col)
+                              .map((cert, i) => (
+                                <motion.div
+                                  key={cert.name}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: i * 0.04 }}
+                                  className="flex items-center gap-2.5 px-3 py-1.5 transition-colors hover:bg-[var(--color-accent)]/5"
+                                >
+                                  <Award size={11} className="shrink-0" style={{ color: meta.color }} />
+                                  <span className="min-w-0 flex-1 text-[11px] font-medium text-[var(--color-text-primary)] leading-snug">
+                                    {cert.name}
+                                  </span>
+                                  {cert.issuer && (
+                                    <span className="shrink-0 text-[10px] text-[var(--color-text-muted)] hidden lg:inline">
+                                      {cert.issuer}
+                                    </span>
+                                  )}
+                                  {cert.pdf && (
+                                    <button
+                                      onClick={() => setPdfModal({ url: cert.pdf, name: cert.name })}
+                                      className="flex shrink-0 items-center gap-1 rounded-md border px-2 py-0.5 text-[10px] font-medium transition-all duration-200 hover:shadow-[0_0_8px_var(--color-neon-glow)]"
+                                      style={{ borderColor: `color-mix(in srgb, ${meta.color} 40%, transparent)`, background: `color-mix(in srgb, ${meta.color} 10%, transparent)`, color: meta.color }}
+                                    >
+                                      <ExternalLink size={9} />
+                                      {locale === "en" ? "View" : "Xem"}
+                                    </button>
+                                  )}
+                                </motion.div>
+                              ))}
+                          </div>
+                        ) : null
+                      )}
+                    </div>
                   </div>
-                  <p className="ml-8 text-[10px] text-[var(--color-text-muted)]">{cert.issuer}</p>
-                </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
           )}
 
@@ -159,11 +235,22 @@ export default function EducationTable() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.15 }}
                 >
-                  <div className="mb-1.5 flex items-center justify-between">
+                  <div className="mb-1.5 flex items-center justify-between gap-2">
                     <span className="text-xs font-medium text-[var(--color-text-primary)]">{lang.name}</span>
-                    <span className="rounded-md bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-medium text-[var(--color-accent)]">
-                      {lang.level}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-md bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-medium text-[var(--color-accent)]">
+                        {lang.level}
+                      </span>
+                      {lang.pdf && (
+                        <button
+                          onClick={() => setPdfModal({ url: lang.pdf, name: lang.name + " – " + lang.level })}
+                          className="flex items-center gap-1 rounded-md border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-medium text-[var(--color-accent)] transition-all duration-200 hover:bg-[var(--color-accent)]/20 hover:shadow-[0_0_8px_var(--color-neon-glow)]"
+                        >
+                          <ExternalLink size={9} />
+                          {locale === "en" ? "View" : "Xem"}
+                        </button>
+                      )}
+                    </div>
                   </div>
                   <div className="relative h-2.5 overflow-hidden rounded-full bg-[var(--color-card-border)]">
                     <motion.div
@@ -185,5 +272,61 @@ export default function EducationTable() {
         </AnimatePresence>
       </motion.div>
     </section>
+
+    {/* PDF Modal – rendered via portal to escape header stacking context */}
+    {createPortal(
+    <AnimatePresence>
+      {pdfModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm p-2"
+          onClick={() => setPdfModal(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.96, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 28 }}
+            className="relative flex w-full h-full flex-col rounded-2xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] shadow-[0_0_80px_rgba(59,130,246,0.25)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal header */}
+            <div className="flex items-center justify-between border-b border-[var(--color-card-border)] px-4 py-3">
+              <div className="flex items-center gap-2">
+                <Award size={15} className="text-[var(--color-accent-teal)]" />
+                <span className="text-sm font-medium text-[var(--color-text-primary)] line-clamp-1">{pdfModal.name}</span>
+              </div>
+              <button
+                onClick={() => setPdfModal(null)}
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-500 text-white shadow-[0_0_12px_rgba(239,68,68,0.6)] transition-all hover:bg-red-600 hover:shadow-[0_0_20px_rgba(239,68,68,0.8)] active:scale-95"
+                title="Đóng (Esc)"
+              >
+                <X size={18} strokeWidth={2.5} />
+              </button>
+            </div>
+            {/* PDF / Image viewer */}
+            {/\.(png|jpg|jpeg|webp)$/i.test(pdfModal.url) ? (
+              <div className="flex-1 overflow-auto flex items-center justify-center bg-[var(--color-bg-base)] rounded-b-2xl p-4">
+                <img
+                  src={pdfModal.url}
+                  alt={pdfModal.name}
+                  className="max-h-full max-w-full rounded-xl object-contain shadow-lg"
+                />
+              </div>
+            ) : (
+              <iframe
+                src={`${pdfModal.url}#toolbar=0&navpanes=0&scrollbar=0`}
+                className="h-full w-full rounded-b-2xl"
+                title={pdfModal.name}
+              />
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    , document.body)}
+    </>
   );
 }
