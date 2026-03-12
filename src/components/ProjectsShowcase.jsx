@@ -87,7 +87,7 @@ export default function ProjectsShowcase() {
             >
               <TiltCard className="card-glow group relative rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-5 transition-all duration-300 hover:border-[var(--color-accent)]/40 hover:shadow-[0_0_30px_var(--color-neon-glow)]">
                 {/* Project number badge */}
-                <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-teal)] text-[10px] font-bold text-white shadow-lg">
+                <div className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-teal)] text-[10px] font-bold text-white shadow-lg">
                   {String(i + 1).padStart(2, "0")}
                 </div>
 
@@ -202,7 +202,7 @@ export default function ProjectsShowcase() {
               transition={{ delay: i * 0.12, type: "spring", stiffness: 150 }}
             >
               <TiltCard className="card-glow group relative rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-5 transition-all duration-300 hover:border-amber-400/40 hover:shadow-[0_0_30px_var(--color-neon-glow)]">
-                <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-[10px] font-bold text-white shadow-lg">
+                <div className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-[10px] font-bold text-white shadow-lg">
                   {String(techProjects.length + i + 1).padStart(2, "0")}
                 </div>
                 <div className="mb-3">
